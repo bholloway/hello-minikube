@@ -1,0 +1,29 @@
+{
+  "name": "hello-minikube",
+  "version": "0.0.1",
+  "description": "kubernetes hello minikube tutorial",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "init": "npm run minikube:start && npm run docker:build && npm run minikube:add",
+    "up": "npm run minikube:start && npm run minikube:launch",
+    "dash": "minikube dashboard",
+    "down": "npm run minikube:stop",
+    "nuke": "npm run minikube:remove; npm run minikube:stop",
+    "docker:build": "eval $(minikube docker-env) && docker build . -t $npm_package_name:$npm_package_version",
+    "minikube:start": "SERVER_API_VERSION=1.23 minikube start --vm-driver=xhyve && kubectl config use-context minikube",
+    "foo": "kubectl run $npm_package_name --image=$npm_package_name:$npm_package_version --port=8080",
+    "minikube:add": "kubectl run $npm_package_name --image=$npm_package_name:$npm_package_version --port=8080 && kubectl expose deployment $npm_package_name --type=LoadBalancer",
+    "minikube:remove": "kubectl delete service,deployment $npm_package_name",
+    "minikube:info": "kubectl cluster-info && kubectl get deployments && kubectl get services",
+    "minikube:launch": "minikube service $npm_package_name",
+    "minikube:stop": "minikube stop"
+  },
+  "keywords": [
+    "minikube",
+    "kubernetes"
+  ],
+  "author": "bholloway",
+  "license": "MIT"
+}
