@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "watch": "nodemon index.js",
     "init": "npm run minikube:start && npm run docker:build && npm run minikube:add",
     "up": "npm run minikube:start && npm run minikube:launch",
     "dash": "minikube dashboard",
@@ -25,5 +26,20 @@
     "kubernetes"
   ],
   "author": "bholloway",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "boom": "^7.1.1",
+    "glob": "^7.1.2",
+    "hapi": "^16.6.2",
+    "hapi-auth-basic": "^4.2.0",
+    "hapi-auth-bearer-token": "^5.1.0",
+    "hapi-auth-jwt": "^4.0.0",
+    "ioredis": "^3.2.2",
+    "ioredis-mock": "^3.4.2",
+    "joi": "^13.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
 }
