@@ -14,7 +14,7 @@ process.on('unhandledRejection', (error) => console.error(error));
 
 Promise.resolve()
   .then(() => {
-    const server = new Hapi.Server();
+    const server = new Hapi.Server({debug: {request: '*'}});
     server.connection({port: PORT});
     return {server};
   })
